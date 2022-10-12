@@ -26,15 +26,6 @@ sudo adduser dbadmin
 
 ## เปิดบริการเป็นเว็บแอพพลิเคชันได้ (Web+DB+Server-Side Script) แบบปลอดภัย
 
-```bash
-docker volume create portainer_data  
-docker run -d -p 8000:8000 -p 9443:9443 --name portainer \  
-    --restart=always \  
-    -v /var/run/docker.sock:/var/run/docker.sock \  
-    -v portainer_data:/data \  
-    portainer/portainer-ce:2.9.3
-```
-
 ## กำกับดูแลด้วยยูสเซอร์ webadmin สำหรับงานเว็บ และ dbadmin สำหรับงานฐานข้อมูล
 
 ## คำสั่งที่จำเป็นต่อผู้ดูแลระบบไม่ต่ำกว่า 20 คำสั่ง
