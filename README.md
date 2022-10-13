@@ -30,6 +30,7 @@ chmod -R 700 webadmin
 
 ```bash
 sudo ufw allow 22
+sudo ufw limit 22
 sudo ufw enable
 ```
 
@@ -53,7 +54,16 @@ sudo cloudflared service install <token>
 ```
 
 ```bash
-vim ~/.ssh/config
+nano /etc/ssh/sshd_config
+```
+
+```
+PermitRootLogin no
+PasswordAuthentication no
+```
+
+```bash
+nano ~/.ssh/config
 ```
 
 ```
@@ -82,6 +92,13 @@ ssh-copy-id -i ~/.ssh/id_webadmin webadmin@<server-ip>
 
 ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_dbadmin
 ssh-copy-id -i ~/.ssh/id_dbadmin dbadmin@<server-ip>
+```
+
+```
+Host spa-web
+    Hostname <hostname>
+    User webadmin
+    IdentityFile ~/.ssh/id_webadmin
 ```
 
 8. คำสั่งที่จำเป็นต่อผู้ดูแลระบบไม่ต่ำกว่า 20 คำสั่ง
