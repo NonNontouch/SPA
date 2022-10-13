@@ -77,10 +77,10 @@ sudo docker-compose up -d
 7. กำกับดูแลด้วยยูสเซอร์ webadmin สำหรับงานเว็บ และ dbadmin สำหรับงานฐานข้อมูล
 
 ```bash
-ssh-keygen -t rsa -f ~/.ssh/id_webadmin
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_webadmin
 ssh-copy-id -i ~/.ssh/id_webadmin webadmin@<server-ip>
 
-ssh-keygen -t rsa -f ~/.ssh/id_dbadmin
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_dbadmin
 ssh-copy-id -i ~/.ssh/id_dbadmin dbadmin@<server-ip>
 ```
 
