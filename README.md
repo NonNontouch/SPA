@@ -49,7 +49,7 @@ curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/relea
 
 sudo dpkg -i cloudflared.deb && 
 
-sudo cloudflared service install eyJhIjoiNGRhN2JkNzY4ZGQ3NGJkYWM3YjUyMjQ5OGI3MDZhZjUiLCJ0IjoiZWVhZGQ2Y2UtNzQwNC00OWU3LTg4NWMtMTJjYjRiOGNlYTNlIiwicyI6Ik9EVXlOR1l3WTJFdE9UUXpZeTAwWW1VMUxXRTFOV1l0WWpZMFpHUTBZVEpqWW1SayJ9
+sudo cloudflared service install <token>
 ```
 
 ```bash
