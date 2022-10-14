@@ -11,20 +11,23 @@ sudo timedatectl set-timezone Asia/Bangkok
 ```
 
 ## 3. อัปเดต/แพตช์ระบบปฏิบัติการ
+
 อัปเดตข้อมูลเวอร์ชันของแพคเกจและดาวน์โหลดแพคเกจเวอร์ชันใหม่มาติดตั้ง
 คำสั่งนี้จะแสดง update list ของ package โดยจะตรวจสอบการอัปเดตผ่านทาง internet โดย list จะถูกนำมาจาก /etc/apt/source.list
 hit คือเป็นversionล่าสุดแล้ว 
 get คือสามารถอัปเดตได้
-หรือสามารถใช้คำสั่ง ```apt list --upgradable``` เพื่อดูว่าpackageไหนupdateได้  
+หรือสามารถใช้คำสั่ง `apt list --upgradable` เพื่อดูว่าpackageไหนupdateได้  
+
 ```bash
 sudo apt-get update
 ```
+
 คำสั่งนี้จะ install package ทั้งหมดที่สามารถ update ได้
-หากต้องการ install package ที่ต้องการเท่านั้นสามารถใช้คำสั่ง ```sudo apt --only-upgrade install (package name)```
+หากต้องการ install package ที่ต้องการเท่านั้นสามารถใช้คำสั่ง `sudo apt --only-upgrade install (package name)`
+
 ```bash
 sudo apt-get upgrade
 ```
-
 
 เปิดใช้งานการอัปเดตอัตโนมัติด้านความปลอดภัย
 
@@ -35,8 +38,9 @@ sudo systemctl status unattended-upgrades
 ```
 
 ## 4. เพิ่มยูสเซอร์ webadmin และ dbadmin เข้าสู่ระบบ พร้อมการกำกับดูแลที่ดีให้ปลอดภัย
-การเพิ่ม user นั่นสามารถทำได้โดยการใช้คำสั่ง 
-```sudo adduser (name)```
+
+การเพิ่ม user นั่นสามารถทำได้โดยการใช้คำสั่ง `sudo adduser (name)`
+
 ```bash
 sudo adduser webadmin  
 sudo adduser dbadmin
@@ -74,7 +78,7 @@ sudo cloudflared service install <token>
 ```
 
 ```bash
-nano /etc/ssh/sshd_config
+sudo nano /etc/ssh/sshd_config
 ```
 
 ```
@@ -83,7 +87,7 @@ PasswordAuthentication no
 ```
 
 ```bash
-nano ~/.ssh/config
+sudo nano ~/.ssh/config
 ```
 
 ```
