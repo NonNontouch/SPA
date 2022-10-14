@@ -12,9 +12,19 @@ sudo timedatectl set-timezone Asia/Bangkok
 
 ## 3. อัปเดต/แพตช์ระบบปฏิบัติการ
 
+อัปเดตข้อมูลเวอร์ชันของแพคเกจและดาวน์โหลดแพคเกจเวอร์ชันใหม่มาติดตั้ง
+
 ```bash
 sudo apt update  
 sudo apt upgrade -y
+```
+
+เปิดใช้งานการอัปเดตอัตโนมัติด้านความปลอดภัย
+
+```bash
+sudo systemctl status unattended-upgrades
+sudo systemctl enable unattended-upgrades
+sudo systemctl status unattended-upgrades
 ```
 
 ## 4. เพิ่มยูสเซอร์ webadmin และ dbadmin เข้าสู่ระบบ พร้อมการกำกับดูแลที่ดีให้ปลอดภัย
