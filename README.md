@@ -1,21 +1,23 @@
-1. ติดตั้งระบบปฏิบัติการตระกูลยูนิกซ์ระดับเซิร์ฟเวอร์ Ubuntu Server หรือ FreeBSD/OpenBSD หรือเทียบเท่า
+# System Platform Administration - Ubuntu Server Guide
+
+## 1. ติดตั้งระบบปฏิบัติการตระกูลยูนิกซ์ระดับเซิร์ฟเวอร์ Ubuntu Server หรือ FreeBSD/OpenBSD หรือเทียบเท่า
 
   
 
-2. ตั้งค่าให้เวลาเดินตรงกับมาตรฐานโลก
+## 2. ตั้งค่าให้เวลาเดินตรงกับมาตรฐานโลก
 
 ```bash
 sudo timedatectl set-timezone Asia/Bangkok
 ```
 
-3. อัปเดต/แพตช์ระบบปฏิบัติการ
+## 3. อัปเดต/แพตช์ระบบปฏิบัติการ
 
 ```bash
 sudo apt update  
 sudo apt upgrade -y
 ```
 
-4. เพิ่มยูสเซอร์ webadmin และ dbadmin เข้าสู่ระบบ พร้อมการกำกับดูแลที่ดีให้ปลอดภัย
+## 4. เพิ่มยูสเซอร์ webadmin และ dbadmin เข้าสู่ระบบ พร้อมการกำกับดูแลที่ดีให้ปลอดภัย
 
 ```bash
 sudo adduser webadmin  
@@ -26,7 +28,7 @@ chmod -R 700 dbadmin
 chmod -R 700 webadmin
 ```
 
-5. เปิดให้เข้าถึงได้จากระยะไกลด้วย ssh หรือ remote desktop หรือเทียบเท่า
+## 5. เปิดให้เข้าถึงได้จากระยะไกลด้วย ssh หรือ remote desktop หรือเทียบเท่า
 
 ```bash
 sudo ufw allow 22
@@ -75,7 +77,7 @@ Host ssh.example.com
 ssh <username>@<server-ip>
 ```
 
-6. เปิดบริการเป็นเว็บแอพพลิเคชันได้ (Web+DB+Server-Side Script) แบบปลอดภัย
+## 6. เปิดบริการเป็นเว็บแอพพลิเคชันได้ (Web+DB+Server-Side Script) แบบปลอดภัย
 
 ```bash
 sudo apt install docker.io -y
@@ -84,7 +86,7 @@ sudo apt install docker-compose -y
 sudo docker-compose up -d
 ```
 
-7. กำกับดูแลด้วยยูสเซอร์ webadmin สำหรับงานเว็บ และ dbadmin สำหรับงานฐานข้อมูล
+## 7. กำกับดูแลด้วยยูสเซอร์ webadmin สำหรับงานเว็บ และ dbadmin สำหรับงานฐานข้อมูล
 
 ```bash
 ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_webadmin
@@ -101,4 +103,4 @@ Host spa-web
     IdentityFile ~/.ssh/id_webadmin
 ```
 
-8. คำสั่งที่จำเป็นต่อผู้ดูแลระบบไม่ต่ำกว่า 20 คำสั่ง
+## 8. คำสั่งที่จำเป็นต่อผู้ดูแลระบบไม่ต่ำกว่า 20 คำสั่ง
