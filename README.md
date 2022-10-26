@@ -117,8 +117,8 @@ docker network create snappy-network
 docker run -dp 27017:27017 \                                                               
   -e MONGO_INITDB_ROOT_USERNAME=dbadmin \
   -e MONGO_INITDB_ROOT_PASSWORD=cq7p8N9qeMgKq3B2WuUp \
-  -v /home/dbadmin/db:/data/db
-  --network snappy-network
+  -v /home/dbadmin/db:/data/db \
+  --network snappy-network \
   mongo
 
 docker ps
