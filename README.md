@@ -140,11 +140,11 @@ db.createUser(
 ```
 
 ```bash
-docker build -t snappy-app
+docker build -t snappy-app .
 
 docker run -dp 3000:3000 --name snappy-app --network snappy-network snappy-app
 
-docker build -t snappy-api
+docker build -t snappy-api .
 
 docker run -dp 5000:5000 --name snappy-api --network snappy-network snappy-api
 ```
