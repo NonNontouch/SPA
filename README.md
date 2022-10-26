@@ -107,9 +107,50 @@ ssh <username>@<server-ip>
 
 ```bash
 sudo apt install docker.io -y
-sudo apt install docker-compose -y
+```
 
-sudo docker-compose up -d
+```bash
+docker network create snappy-network
+```
+
+```bash
+docker run -dp 27017:27017 \                                                               
+  -e MONGO_INITDB_ROOT_USERNAME=dbadmin \
+  -e MONGO_INITDB_ROOT_PASSWORD=cq7p8N9qeMgKq3B2WuUp \
+  -v /home/dbadmin/db:/data/db
+  --network snappy-network
+  mongo
+
+docker ps
+
+docker exec -it c74 bash
+
+mongosh --authenticationDatabase admin -u dbadmin -p
+```
+
+```mysql
+use chat
+db.createUser(
+  {
+    user: "webadmin",
+    pwd:  passwordPrompt()
+    roles: [ { role: "readWrite", db: "chat" } ]
+  }
+)
+```
+
+```bash
+docker build -t snappy-app
+
+docker run -dp 3000:3000 --name snappy-app --network snappy-network snappy-app
+
+docker build -t snappy-api
+
+docker run -dp 5000:5000 --name snappy-api --network snappy-network snappy-api
+```
+
+```bash
+mongodb://webadmin:p5jy8gyXUQq3ap7jXKWP@mongo:27017/chat?authSource=chat
 ```
 
 ## 7. กำกับดูแลด้วยยูสเซอร์ webadmin สำหรับงานเว็บ และ dbadmin สำหรับงานฐานข้อมูล
