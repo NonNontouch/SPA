@@ -7,9 +7,11 @@
 ## 2. ตั้งค่าให้เวลาเดินตรงกับมาตรฐานโลก
 
 ทำการเข้าสู่ระบบ server เมื่อเข้าสู่ระบบเเล้ว ให้ทำการเช็คเวลาของระบบ โดย ใช้คำสั่ง `sudo timedatectl` เมื่อทำเเล้วจะเห็น time zone ขึ้นมา ในที่นี้เราต้องการเปลี่ยน time zone ให้เป็นประเทศไทยเราจึงทำการเปลี่ยนได้โดยใช้คำสั่ง
+
 ```bash
 sudo timedatectl set-timezone Asia/Bangkok
 ```
+
 เมื่อใช้คำสั่งนี้ระบบจะให้ทำการใส่รหัสผ่านของผู้ใช้ เมื่อถูกต้องระบบจะบอกว่า  AUTHENTICATION COMPLETE หลังจากนั้นให้เราทำการเช็ค time zone อีกที่ว่าระบบได้ใช้ time zone ที่เราต้องการหรือไม่
 
 ต่อไปเป้นการตั้งค่า NTP server โดยในตอนเเรกเราต้องทำการเช็ค NTP server ในระบบของเราก่อนโดยใช้คำสั่ง `sudo systemctl status systemd-timesyncd.service` หลังจากนั้นทำการใส่รหัสของผู้ใช้ จะเห็นหน้า NTP server ออกมา จะเห็น ntp.ubantu.com ซึ่งเราจะทำการเปลี่ยนให้เป็น NTP server ของไทยโดยเราจะทำการเปลี่ยนโดยไปที่หน้า config โดยใช้คำสั่ง `sudo nano /etc/systemd/timesyncd.conf` เมื่อเข้าไปที่หน้า config เเล้วให้ทำการเเก้ไขโดยไปที่ NTP เเล้วทำการใส่ NTP server ที่เปิดในประเทศไทยลงไปเช่น time.navy.mi.th, clock.nectec.or.th, ntp.ku.ac.th หรือ time.uni.net.th ซึ่งสามารถหาได้จากใน google (ถ้า NTP server เหล่านี้ใช้ไม่ได้ระบบ จะทำการใช้ NTP server สำรองของระบบเเทน) หลังจากนั้นทำการเริ่มต้นระบบใหม่โดยใช้คำสั่ง `sudo systemctl restart systemd-timesyncd.service` เเละเมื่อต้องการเช็คว่า NTP server ที่เราใช้สามารถใช้ได้หรือไม่ ให้ทำการใช้คำสั่ง `sudo systemctl status systemd-timesyncd.service`
@@ -36,7 +38,6 @@ sudo apt-get upgrade
 เปิดใช้งานการอัปเดตอัตโนมัติด้านความปลอดภัย
 
 ```bash
-sudo systemctl status unattended-upgrades
 sudo systemctl enable unattended-upgrades
 sudo systemctl status unattended-upgrades
 ```
@@ -49,9 +50,9 @@ sudo systemctl status unattended-upgrades
 sudo adduser webadmin  
 sudo adduser dbadmin
 
-chmod -R 700 sysadmin
-chmod -R 700 dbadmin
-chmod -R 700 webadmin
+chmod -R 750 sysadmin
+chmod -R 750 dbadmin
+chmod -R 750 webadmin
 ```
 
 ## 5. เปิดให้เข้าถึงได้จากระยะไกลด้วย ssh หรือ remote desktop หรือเทียบเท่า
@@ -118,7 +119,7 @@ docker network create snappy-network
 ```
 
 ```bash
-docker run -dp 27017:27017 \
+docker run -d \
   -e MONGO_INITDB_ROOT_USERNAME=dbadmin \
   -e MONGO_INITDB_ROOT_PASSWORD=cq7p8N9qeMgKq3B2WuUp \
   -v /home/dbadmin/db:/data/db \
@@ -174,19 +175,18 @@ mongodb://webadmin:p5jy8gyXUQq3ap7jXKWP@mongo:27017/chat?authSource=chat
 
 ## 7. กำกับดูแลด้วยยูสเซอร์ webadmin สำหรับงานเว็บ และ dbadmin สำหรับงานฐานข้อมูล
 
-```bash
-ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_webadmin
-ssh-copy-id -i ~/.ssh/id_webadmin webadmin@<server-ip>
-
-ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_dbadmin
-ssh-copy-id -i ~/.ssh/id_dbadmin dbadmin@<server-ip>
 ```
-
-```
-Host spa-web
+Host SPA
     Hostname <hostname>
     User webadmin
     IdentityFile ~/.ssh/id_webadmin
 ```
 
 ## 8. คำสั่งที่จำเป็นต่อผู้ดูแลระบบไม่ต่ำกว่า 20 คำสั่ง
+
+```bash
+ip a
+sudo ss -ntulp
+whois snappy.pp.ua
+curl -Iv https://app.snappy.pp.ua
+```
