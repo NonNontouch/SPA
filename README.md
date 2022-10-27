@@ -106,6 +106,10 @@ ssh <username>@<server-ip>
 ## 6. เปิดบริการเป็นเว็บแอพพลิเคชันได้ (Web+DB+Server-Side Script) แบบปลอดภัย
 
 ```bash
+git clone https://github.com/nkd3v/chat-app.git
+```
+
+```bash
 sudo apt install docker.io -y
 ```
 
@@ -138,10 +142,6 @@ db.createUser(
     roles: [ { role: "readWrite", db: "chat" } ]
   }
 )
-```
-
-```bash
-git clone https://github.com/nkd3v/chat-app.git
 ```
 
 ```dockerfile
