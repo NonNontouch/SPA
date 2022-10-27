@@ -141,6 +141,24 @@ db.createUser(
 ```
 
 ```bash
+git clone https://github.com/nkd3v/chat-app.git
+```
+
+```dockerfile
+FROM node:16
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+EXPOSE 5000
+
+CMD [ "npm", "start" ]
+```
+
+```bash
 docker build -t snappy-app .
 
 docker run -dp 3000:3000 --name snappy-app --network snappy-network -v $PWD:/app -v app-deps:/app/node_modules snappy-app
