@@ -173,6 +173,10 @@ docker run -dp 5000:5000 --name snappy-api --network snappy-network  -v $PWD:/ap
 mongodb://webadmin:p5jy8gyXUQq3ap7jXKWP@mongo:27017/chat?authSource=chat
 ```
 
+```bash
+curl localhost:3000
+```
+
 ## 7. กำกับดูแลด้วยยูสเซอร์ webadmin สำหรับงานเว็บ และ dbadmin สำหรับงานฐานข้อมูล
 
 ```
