@@ -186,11 +186,39 @@ Host SPA
     IdentityFile ~/.ssh/id_webadmin
 ```
 
+```bash
+# danger
+sudo usermod -aG docker sysadmin
+```
+
 ## 8. คำสั่งที่จำเป็นต่อผู้ดูแลระบบไม่ต่ำกว่า 20 คำสั่ง
 
 ```bash
 ip a
 sudo ss -ntulp
 whois snappy.pp.ua
+dig @9.9.9.9 google.com NS
 curl -Iv https://app.snappy.pp.ua
+curl ipinfo.io/ip
+curl ipinfo.io/json
+lsof -ni
+alias drun='docker run'
+crontab
+journalctl
+cp
+ps aux
+htop
+w
+df -ah
+du -sh *
+man
+history
+kill
+
+shred -vfuz -n 10 file
+shred --verbose --random-source=/dev/urandom -n 1 /dev/sda
+
+tcpdump
+
+hping3 -V -p 80 -s 5050 <scan_type> www.google.com
 ```
