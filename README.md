@@ -187,8 +187,14 @@ Host SPA
 ```
 
 ```bash
-# danger
+# danger (rootful container)
 sudo usermod -aG docker sysadmin
+
+# safe (rootless container)
+sudo apt install systemd-container
+sudo machinectl shell <user>@
+sudo loginctl enable-linger <user>
+
 ```
 
 ## 8. คำสั่งที่จำเป็นต่อผู้ดูแลระบบไม่ต่ำกว่า 20 คำสั่ง
@@ -221,4 +227,7 @@ shred --verbose --random-source=/dev/urandom -n 1 /dev/sda
 tcpdump
 
 hping3 -V -p 80 -s 5050 <scan_type> www.google.com
+which docker
+umask
+/etc/host
 ```
