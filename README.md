@@ -195,6 +195,7 @@ sudo apt install systemd-container
 sudo machinectl shell <user>@
 sudo loginctl enable-linger <user>
 
+MONGO_URL="mongodb://webadmin:p5jy8gyXUQq3ap7jXKWP@localhost:27017/chat?authSource=chat"
 ```
 
 ## 8. คำสั่งที่จำเป็นต่อผู้ดูแลระบบไม่ต่ำกว่า 20 คำสั่ง
