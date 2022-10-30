@@ -181,29 +181,19 @@ curl localhost:3000
 
 ## 7. กำกับดูแลด้วยยูสเซอร์ webadmin สำหรับงานเว็บ และ dbadmin สำหรับงานฐานข้อมูล
 
-```
-Host SPA
-    Hostname <hostname>
-    User webadmin
-    IdentityFile ~/.ssh/id_webadmin
-```
-
 ```bash
 # danger (rootful container)
 sudo usermod -aG docker sysadmin
 
 # safe (rootless container)
+sudo docker rm -f `docker ps -aq`
 sudo systemctl disable --now docker.service docker.socket
 
-sudo apt install systemd-container
-sudo machinectl shell <user>@
-sudo loginctl enable-linger <user>
-
-MONGO_URL="mongodb://webadmin:p5jy8gyXUQq3ap7jXKWP@localhost:27017/chat?authSource=chat"
+curl -fsSL https://get.docker.com/rootless | sh
 
 ip link add snappy-network type dummy
-ip addr show
 ip addr add 172.20.0.2/16 dev snappy-network
+ip addr show
 
 su dbadmin
 
