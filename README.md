@@ -197,6 +197,8 @@ ip addr show
 
 su dbadmin
 
+sudo chown -R dbadmin:dbadmin /home/dbadmin/db
+
 docker run -dp 172.20.0.2:27017:27017 \
   -e MONGO_INITDB_ROOT_USERNAME=dbadmin \
   -e MONGO_INITDB_ROOT_PASSWORD=cq7p8N9qeMgKq3B2WuUp \
