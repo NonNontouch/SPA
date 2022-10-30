@@ -202,8 +202,8 @@ sudo loginctl enable-linger <user>
 MONGO_URL="mongodb://webadmin:p5jy8gyXUQq3ap7jXKWP@localhost:27017/chat?authSource=chat"
 
 ip link add snappy-network type dummy
-ip a
-ip a add 172.20.0.2/16 dev snappy-network
+ip addr show
+ip addr add 172.20.0.2/16 dev snappy-network
 
 su dbadmin
 
