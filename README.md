@@ -211,7 +211,9 @@ mongo 172.20.0.2
 
 su webadmin
 
+docker build -t snappy-app .
 docker run -dp 3000:3000 --name snappy-app -v $PWD:/app -v app-deps:/app/node_modules snappy-app
+docker build -t snappy-api .
 docker run -dp 5000:5000 --name snappy-api -v $PWD:/app -v api-deps:/app/node_modules snappy-api
 ```
 
