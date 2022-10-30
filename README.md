@@ -139,10 +139,12 @@ use chat
 db.createUser(
   {
     user: "webadmin",
-    pwd:  passwordPrompt()
+    pwd:  passwordPrompt(),
     roles: [ { role: "readWrite", db: "chat" } ]
   }
 )
+
+p5jy8gyXUQq3ap7jXKWP
 ```
 
 ```dockerfile
@@ -191,11 +193,35 @@ Host SPA
 sudo usermod -aG docker sysadmin
 
 # safe (rootless container)
+sudo systemctl disable --now docker.service docker.socket
+
 sudo apt install systemd-container
 sudo machinectl shell <user>@
 sudo loginctl enable-linger <user>
 
 MONGO_URL="mongodb://webadmin:p5jy8gyXUQq3ap7jXKWP@localhost:27017/chat?authSource=chat"
+
+ip link add snappy-network type dummy
+ip a
+ip addr add 172.20.0.2/16 dev snappy-network
+
+vi /etc/hosts
+mongo 172.20.0.2
+
+su webadmin
+
+docker run -dp 3000:3000 --name snappy-app --network snappy-network -v $PWD:/app -v app-deps:/app/node_modules snappy-app
+docker run -dp 5000:5000 --name snappy-api --network snappy-network  -v $PWD:/app -v api-deps:/app/node_modules snappy-api
+
+su dbadmin
+
+docker run -d \
+  -e MONGO_INITDB_ROOT_USERNAME=dbadmin \
+  -e MONGO_INITDB_ROOT_PASSWORD=cq7p8N9qeMgKq3B2WuUp \
+  -v /home/dbadmin/db:/data/db \
+  --name mongo \
+  --network snappy-network \
+  mongo
 ```
 
 ## 8. คำสั่งที่จำเป็นต่อผู้ดูแลระบบไม่ต่ำกว่า 20 คำสั่ง
@@ -231,4 +257,12 @@ hping3 -V -p 80 -s 5050 <scan_type> www.google.com
 which docker
 umask
 /etc/host
+
+groupadd webdev dbdev
+
+adduser dan
+usermod -aG webdev dan
+usermod -aG webdev webadmin
+
+umask
 ```
