@@ -219,43 +219,56 @@ docker run -dp 5000:5000 --name snappy-api -v $PWD:/app -v api-deps:/app/node_mo
 
 ## 8. คำสั่งที่จำเป็นต่อผู้ดูแลระบบไม่ต่ำกว่า 20 คำสั่ง
 
+Networking
 ```bash
 ip a
 sudo ss -ntulp
 whois snappy.pp.ua
-dig @9.9.9.9 google.com NS
+dig app.snappy.pp.ua
 curl -Iv https://app.snappy.pp.ua
-curl ipinfo.io/ip
-curl ipinfo.io/json
-lsof -ni
-alias drun='docker run'
-crontab
-journalctl
-cp
-ps aux
-htop
-w
+curl localhost:3000
+curl ipinfo.io
+```
+
+Maintenance
+```bash
 df -ah
 du -sh *
-man
+sudo shutdown now
+sudo shutdown -r now
+vi backup-db.sh
+chmod +x backup-db.sh
+mkdir /home/sysadmin/backup
+```
+
+Backup
+```bash
+#!/bin/bash
+
+backup_files="/home/dbadmin/db"
+
+dest="/home/sysadmin/backup"
+
+date=$(date +%d-%m-%Y)
+archive_file="$date.tgz"
+
+tar czf $dest/$archive_file $backup_files
+
+# sudo crontab -e
+# 0 0 * * * /home/sysadmin/backup-db.sh
+```
+
+Essential
+```bash
+ps aux
+htop
 history
 kill
-
+w
+# make file then
+rm
 shred -vfuz -n 10 file
-shred --verbose --random-source=/dev/urandom -n 1 /dev/sda
-
-tcpdump
-
-hping3 -V -p 80 -s 5050 <scan_type> www.google.com
 which docker
-umask
-/etc/host
-
-groupadd webdev dbdev
-
-adduser dan
-usermod -aG webdev dan
-usermod -aG webdev webadmin
-
-umask
+man man
+alias drun='docker run'
 ```
