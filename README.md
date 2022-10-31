@@ -268,7 +268,6 @@ w
 # make file then
 rm
 shred -vfuz -n 10 file
-which docker
 man man
-alias drun='docker run'
+alias dr='docker run'
 ```
