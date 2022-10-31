@@ -104,6 +104,20 @@ Host ssh.example.com
 ssh <username>@<server-ip>
 ```
 
+```bash
+sudo vi /etc/ssh/sshd_config
+Banner /etc/banner
+sudo vi /etc/banner
+```
+
+```
+###############################################################
+#                  This is a private server!                  #
+#       All connections are monitored and recorded.           #
+#  Disconnect IMMEDIATELY if you are not an authorized user!  #
+###############################################################
+```
+
 ## 6. เปิดบริการเป็นเว็บแอพพลิเคชันได้ (Web+DB+Server-Side Script) แบบปลอดภัย
 
 ```bash
